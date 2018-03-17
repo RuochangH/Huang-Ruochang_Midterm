@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <meta charset="utf-8">
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div id="intro">
+        <h1>Garbage Collection Map</h1>
+        <p class="main">The city of Philadelphia collects garbage from
+        Monday—Friday. The city is divided into 67 regions, each of which is
+        assigned to one of the five days of the week.</p>
+        <p>This application shows each region color coded based on day of
+        week of garbage collection. To get more information about garbage
+        collection for one of the regions, click on that region on the map.</p>
+      </div>
+      <div id="results" style="display: none;">
+        <h1 class="day-of-week">Day of Week</h1>
+        <p class="main">Your garbage collection day is <span class="day-of-week">
+        Day of Week</span>.</p>
+        <p>Please be sure to leave your garbage outside on <span class="day-of-week">
+        Day of Week</span>. If this week is a federal holiday, leave your
+        garbage outside on the following day.</p>
+      </div>
+    </div>
+    <!-- Map -->
+    <div id="map" class="map"></div>
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoicnVvY2hhbmciLCJhIjoiY2plMGN5NmduNTBzMzJ3cXA4OHJqbTg1MCJ9.hVntg2f96UxD239bHHlQFw';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/ruochang/cjeutr1ns0uik2sp5e1sgmmnj'
+    });
+    </script>
+    <!-- Legend -->
+    <div class="legend">
+      <ul class="legend">
+        <li><span class = "MON"></span> Monday </li>
+        <li><span class = "TUE"></span> Tuesday </li>
+        <li><span class = "WED"></span> Wedsday </li>
+        <li><span class = "THU"></span> Thursday </li>
+        <li><span class = "FRI"></span> Friday </li>
+      </ul>
+    </div>
+    <!-- Javascript Imports -->
+    <script src="js/jquery-2.2.0.js"></script>
+    <script src="js/underscore.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
