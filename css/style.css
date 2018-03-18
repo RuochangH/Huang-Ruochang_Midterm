@@ -4,8 +4,28 @@ body {
     font-family: colfax, helvetica, arial, sans-serif;
 }
 
-p.main {
-  font-size: 24px;
+h1{
+  font-family:AppleGothic;
+  font-size:26px;
+  color:#355C7D;
+}
+
+p.intro {
+  font-family:DINPro;
+  font-size:15px;
+  color:#444649;
+}
+
+#observed {
+  font-family:DINPro;
+  font-size:15px;
+  color: #355C7D;
+}
+
+select {
+  background-color: none;
+  font-family: DINPro;
+  color: #355C7D;
 }
 
 .map {

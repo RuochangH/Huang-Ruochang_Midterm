@@ -13,14 +13,61 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <div id="intro">
-        <h1>Garbage Collection Map</h1>
-        <p class="main">The city of Philadelphia collects garbage from
-        Monday—Friday. The city is divided into 67 regions, each of which is
-        assigned to one of the five days of the week.</p>
-        <p>This application shows each region color coded based on day of
-        week of garbage collection. To get more information about garbage
-        collection for one of the regions, click on that region on the map.</p>
+        <h1>Divvy Bike-share Station Hourly Departure Projection</h1>
+        <p class="intro">In  2013, the city of Chicago lauched Divvy bike share system.
+          As a new mode that facilitates short distance travels and transit rides,
+          the system is popular across the town. However, the unbalanced bike flows hamper
+          the operation and expansion of the system. On the one hand, it results in full
+          or empty station frequently, downgrading the reliability of the system.
+          On the other hand, bike reallocation, solution to this problem, is based on
+          real-time activity, which is costy and lagging behind.</p>
+        <p class="intro">While the unbalanced bike flow is inherented, pro-active reallocation has the potential
+          to reduce the cost and reduce loss of customers. Therefore, this project is designed to
+          build a OLS model to project the hourly departure for 147 stations near downtown Loop.</p>
       </div>
+      <hr></hr>
+      <div id = "observed">
+        <p>To know more about the problem, simply start by looking at the observed differences in
+          hourly departure of these stations. Select weekday and hour to continue.</p>
+        <p>Select a day</p>
+        <select id="week">
+          <option>Weekday</option>
+          <option>Weekend</option>
+        </select>
+        <p>Select an hour</p>
+        <select id="hour">
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+          <option>20</option>
+          <option>21</option>
+          <option>22</option>
+          <option>21</option>
+          <option>23</option>
+        </select>
+
+      </div>
+
+
+
+
       <div id="results" style="display: none;">
         <h1 class="day-of-week">Day of Week</h1>
         <p class="main">Your garbage collection day is <span class="day-of-week">
