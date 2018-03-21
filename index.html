@@ -26,16 +26,16 @@
           build a OLS model to project the hourly departure for 147 stations near downtown Loop.</p>
       </div>
       <hr></hr>
-      <div id = "observed">
+      <div id = "explore">
         <p>To know more about the problem, simply start by looking at the observed differences in
           hourly departure of these stations. Select weekday and hour to continue.</p>
         <p>Select a day</p>
-        <select id="week">
+        <select id="aweek">
           <option>Weekday</option>
           <option>Weekend</option>
         </select>
         <p>Select an hour</p>
-        <select id="hour">
+        <select id="ahour">
           <option>0</option>
           <option>1</option>
           <option>2</option>
@@ -62,10 +62,8 @@
           <option>21</option>
           <option>23</option>
         </select>
-
+        <button> Plot! </button>
       </div>
-
-
 
 
       <div id="results" style="display: none;">
@@ -77,6 +75,8 @@
         garbage outside on the following day.</p>
       </div>
     </div>
+
+
     <!-- Map -->
     <div id="map" class="map"></div>
     <script>
@@ -86,6 +86,8 @@
       style: 'mapbox://styles/ruochang/cjeutr1ns0uik2sp5e1sgmmnj'
     });
     </script>
+
+
     <!-- Legend -->
     <div class="legend">
       <ul class="legend">
