@@ -23,36 +23,80 @@ var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{
   ext: 'png'
 }).addTo(map);
 
-var dataset = "https://raw.githubusercontent.com/RuochangH/Huang-Ruochang_Midterm/master/map.geojson";
-//var featureGroup;
+//provide data
+var dataURL = "https://raw.githubusercontent.com/RuochangH/Huang-Ruochang_Midterm/master/map.geojson";
+var featureGroup;
 
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
+//create layer click sidebar modification
+var showResults = function() {
+  $('#intro').hide();
+  //$('#results').show();
 };
+
+//create property json
+var toJson = function(geoJSONObject){
+  var geoObject = JSON.parse(geoJSONObject);
+  var features = [];
+  features = geoObject.features; return features;};
+
+//create filtering JSON
+var ftJson = function (a,b,c) {
+  _.filter(c,function(d){return d.Id===a&&d.Week===b;});
+};
+
+
+var eachFeatureFunction = function(layer,newData) {
+  layer.on('click', function (event) {
+    showResults();
+    var station = layer.feature.properties.Id;
+    var wked = layer.feature.properties.Week;
+    ftJson(station,wked,newData);
+    function (val) {if(val=="MON") {return "Monday";} else if (
+      val=="TUE") {return "Tuesday";} else if (
+        val=="WED") {return "Wedsday";} else if (
+          val=="THU"){return "Thursday";} else if (
+            val=="FRI"){return "Friday";}};
+    var fulday = day(layer.feature.properties.COLLDAY);
+    $('.day-of-week').text(fulday);
+  });
+};
+
+
 
 //Plot
 $('button').click(function(){
-  var hour = $('#ahour').find(":selected").text();
+  //read user input
+  var hour = Number($('#ahour').find(":selected").text());
   function date() {switch ($('#aweek').find(":selected").text()){
-    case 'Weekday': return 8;
+    case 'Weekday': return 9;
     case 'Weekend': return 13;}}
   var week = date();
-  function show(feature) {
-    if (feature.properties.Week == 8 && feature.properties.Hour === 12) {return true;}
-  }
+
+
+  var myFilter = function(feature){
+    if(feature.properties.Week===week && feature.properties.Hour===hour){return true;}
+  };
+
   $(document).ready(function(){
-    $.ajax(dataset).done(function(data) {
-      var parsedData = JSON.parse(data);
-      L.geoJson(parsedData, {
-      PointToLayer: function (feature,latlng) {
-        return L.circleMarker(latlng,geojsonMarkerOptions);},
-      //filter: show
-      }).addTo(map);
-    });
-  });
+    $.ajax(dataURL).done(function(data) {
+      if(featureGroup != undefined){
+        map.removeLayer(featureGroup);
+      }
+    var parsedData = JSON.parse(data);
+    featureGroup = L.geoJson(parsedData,{
+      filter:myFilter,
+      pointToLayer:function(feature,latlng){
+        var geojsonMarkerOptions = {
+            radius: feature.properties.dept+1,
+            fillColor: "#F8B195",
+            color: "#355C7D",
+            weight: 1,
+            opacity: 0.5,
+            fillOpacity: 0.8
+        };
+        return L.circleMarker(latlng,geojsonMarkerOptions);
+      }
+    }
+  ).addTo(map);
+  });});
 });
