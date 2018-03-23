@@ -60,7 +60,7 @@ var eachFeatureFunction = function(layer,newData) {
     $('.day-of-week').text(fulday);
   });
 };
-
+*/
 
 
 //Plot

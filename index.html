@@ -3,6 +3,7 @@
   <head>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <script src = "http://d3js.org/d3.v3.min.js"></script>
     <meta charset="utf-8">
     <!-- CSS Imports -->
     <link rel="stylesheet" href="css/reset.css" />
@@ -24,8 +25,8 @@
         <p class="intro">While the unbalanced bike flow is inherented, pro-active reallocation has the potential
           to reduce the cost and reduce loss of customers. Therefore, this project is designed to
           build a OLS model to project the hourly departure for 147 stations near downtown Loop.</p>
-      </div>
       <hr></hr>
+      </div>
       <div id = "explore">
         <p>To know more about the problem, simply start by looking at the observed differences in
           hourly departure of these stations. Select weekday and hour to continue.</p>
@@ -65,21 +66,64 @@
         <button> Plot! </button>
       </div>
 
-
       <div id="results" style="display: none;">
-        <h1 class="day-of-week">Day of Week</h1>
-        <p class="main">Your garbage collection day is <span class="day-of-week">
-        Day of Week</span>.</p>
-        <p>Please be sure to leave your garbage outside on <span class="day-of-week">
-        Day of Week</span>. If this week is a federal holiday, leave your
-        garbage outside on the following day.</p>
+      <hr></hr>
+        <h1>Hourly Departure of Selected Station During Selected Day</h1>
+        <style>
+        .bar{
+          fill: steelblue;
+        }
+        .bar:hover{
+          fill: brown;
+        }
+        .axis {
+          font: 10px sans-serif;
+        }
+        .axis path,
+        .axis line {
+          fill: none;
+          stroke: #000;
+          shape-rendering: crispEdges;
+        }
+      </style>
+      <script>
+      // set the dimensions of the canvas
+      var margin = {top: 20, right: 20, bottom: 70, left: 40},
+          width = 600 - margin.left - margin.right,
+          height = 300 - margin.top - margin.bottom;
+
+
+// set the ranges
+var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+
+var y = d3.scale.linear().range([height, 0]);
+
+// define the axis
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(10);
+
+
+// add the SVG element
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
       </div>
     </div>
 
-
     <!-- Map -->
     <div id="map" class="map"></div>
-    
+
     <!-- Legend -->
     <div class="legend">
       <ul class="legend">
